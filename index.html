@@ -33,8 +33,8 @@
         <div class="bg-white p-6 rounded-2xl shadow-lg mb-10">
             <div class="cover">
                 <h1 class="text-4xl sm:text-5xl font-bold text-gray-900">Laboratorio de Conducción Transitoria de Calor en Placas</h1>
-                <img src="https://github.com/Juansanher25/Lab_transit/blob/main/Engraved_printing_plate.jpg?raw=true" alt="Placa metálica grabada para el laboratorio" class="my-8 rounded-lg shadow-md max-w-xs w-full">
-                <p class="text-xl text-gray-700 mt-8"><strong>Profesor:</strong> (Ph.D.) Juan Sandoval Herrera</p>
+                <img src="https://github.com/Juansanher25/Lab_transit/blob/main/Tresplacas.jpg?raw=true" alt="Placas metálicas para el laboratorio" class="my-8 rounded-lg shadow-md max-w-xs w-full">
+                <p class="text-xl text-gray-700"><strong>Profesor:</strong> (Ph.D.) Juan Sandoval Herrera</p>
                 <p class="text-lg text-gray-600 mt-2"><strong>Curso:</strong> Transferencia de Calor I</p>
                 <p class="text-md text-gray-500 mt-2">Universidad de América - 2025</p>
             </div>
@@ -45,6 +45,42 @@
             <p class="text-lg text-gray-600 mt-2">Análisis de Datos Experimentales</p>
         </header>
 
+        <!-- Sección de Ecuaciones -->
+        <div class="bg-white p-6 rounded-2xl shadow-lg mb-10">
+            <div class="text-center">
+                <button onclick="toggleEquations()" class="text-blue-600 font-semibold py-2 px-4 rounded-lg hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    Mostrar/Ocultar Ecuaciones Clave
+                </button>
+            </div>
+            <div id="equations-section" class="hidden mt-6 prose max-w-none text-gray-700">
+                <h3 class="text-xl font-semibold text-center">Ecuaciones Utilizadas</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mt-4 bg-gray-50 p-4 rounded-lg">
+                    <div>
+                        <p><strong>Coeficiente de Convección (h)</strong></p>
+                        <p class="text-center text-lg font-mono">h = b · ρ · cₚ · Lc</p>
+                        <p class="text-xs italic">Se determina a partir de la pendiente (b) de la gráfica linearizada de los datos experimentales.</p>
+                    </div>
+                    <div>
+                        <p><strong>Número de Biot (Bi)</strong></p>
+                        <p class="text-center text-lg font-mono">Bi = (h · Lc) / k</p>
+                        <p class="text-xs italic">Relaciona la resistencia a la conducción interna con la resistencia a la convección externa.</p>
+                    </div>
+                    <div>
+                        <p><strong>Número de Fourier (Fo)</strong></p>
+                        <p class="text-center text-lg font-mono">Fo = (α · t) / Lc²</p>
+                        <p class="text-xs italic">Representa el tiempo adimensional.</p>
+                    </div>
+                    <div>
+                        <p><strong>Difusividad Térmica (α)</strong></p>
+                        <p class="text-center text-lg font-mono">α = k / (ρ · cₚ)</p>
+                        <p class="text-xs italic">Mide la rapidez con la que el calor se difunde a través de un material.</p>
+                    </div>
+                </div>
+                 <p class="text-center mt-4 text-sm text-gray-500">Donde: <strong>Lc</strong> es la longitud característica (Espesor/2), <strong>k</strong> es la conductividad térmica, <strong>ρ</strong> es la densidad, y <strong>cₚ</strong> es el calor específico.</p>
+            </div>
+        </div>
+
+
         <div class="bg-white p-6 rounded-2xl shadow-lg">
             <!-- Tabs para seleccionar el material -->
             <div class="border-b border-gray-200 mb-6">
@@ -52,13 +88,14 @@
                     <button onclick="changeTab('aluminio')" class="tab-button active whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm" id="tab-btn-aluminio">Aluminio</button>
                     <button onclick="changeTab('cobre')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" id="tab-btn-cobre">Cobre</button>
                     <button onclick="changeTab('acero')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" id="tab-btn-acero">Acero Galvanizado</button>
+                    <button onclick="changeTab('otro')" class="tab-button whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" id="tab-btn-otro">Otro Material</button>
                 </nav>
             </div>
 
             <!-- Contenido de las Tabs -->
             <div id="tab-content-aluminio" class="tab-panel">
                 <!-- Formulario Aluminio -->
-                <div id="form-aluminio" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Columna de Inputs -->
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Ingrese los Datos (Aluminio)</h3>
@@ -124,7 +161,7 @@
             </div>
             
             <div id="tab-content-cobre" class="tab-panel hidden">
-                 <div id="form-cobre" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Ingrese los Datos (Cobre)</h3>
                         <div class="space-y-4">
@@ -188,7 +225,7 @@
             </div>
 
             <div id="tab-content-acero" class="tab-panel hidden">
-                 <div id="form-acero" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                         <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Ingrese los Datos (Acero Galv.)</h3>
                         <div class="space-y-4">
@@ -249,6 +286,74 @@
                     </div>
                 </div>
             </div>
+            
+            <div id="tab-content-otro" class="tab-panel hidden">
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold mb-4 text-gray-700">1. Ingrese los Datos (Otro Material)</h3>
+                        <div class="space-y-4">
+                             <div>
+                                <label for="name-otro" class="block text-sm font-medium text-gray-700">Nombre del Material</label>
+                                <input type="text" id="name-otro" placeholder="Ej: Latón" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                            </div>
+                            <fieldset class="border p-4 rounded-lg">
+                                <legend class="text-md font-medium text-gray-600 px-2">Propiedades del Material</legend>
+                                <div class="grid grid-cols-2 gap-4 mt-2">
+                                    <div>
+                                        <label for="k-otro" class="block text-sm font-medium text-gray-700">k (W/m·K)</label>
+                                        <input type="number" id="k-otro" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label for="rho-otro" class="block text-sm font-medium text-gray-700">ρ (kg/m³)</label>
+                                        <input type="number" id="rho-otro" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label for="cp-otro" class="block text-sm font-medium text-gray-700">Cp (J/kg·°C)</label>
+                                        <input type="number" id="cp-otro" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label for="espesor-otro" class="block text-sm font-medium text-gray-700">Espesor (mm)</label>
+                                        <input type="number" id="espesor-otro" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                </div>
+                            </fieldset>
+                            
+                            <fieldset class="border p-4 rounded-lg">
+                                <legend class="text-md font-medium text-gray-600 px-2">Condiciones Experimentales</legend>
+                                <div class="grid grid-cols-2 gap-4 mt-2">
+                                    <div>
+                                        <label for="ti-otro" class="block text-sm font-medium text-gray-700">Temp. Inicial Tᵢ (°C)</label>
+                                        <input type="number" id="ti-otro" value="150" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                    <div>
+                                        <label for="t-inf-otro" class="block text-sm font-medium text-gray-700">Temp. Ambiente Tₐ (°C)</label>
+                                        <input type="number" id="t-inf-otro" value="17" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2">
+                                    </div>
+                                </div>
+                            </fieldset>
+                             <div>
+                                <label for="data-otro" class="block text-sm font-medium text-gray-700">Datos (Tiempo en seg, Temperatura en °C)</label>
+                                <textarea id="data-otro" rows="8" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 sm:text-sm p-2" placeholder="Pegue los datos del nuevo material aquí."></textarea>
+                            </div>
+                        </div>
+                         <button onclick="processData('otro')" class="mt-6 w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            Calcular y Graficar para este Material
+                        </button>
+                    </div>
+
+                    <div class="mt-8 md:mt-0">
+                         <h3 class="text-xl font-semibold mb-4 text-gray-700">2. Resultados Obtenidos</h3>
+                        <div id="results-otro" class="bg-gray-100 p-4 rounded-lg space-y-3">
+                            <p class="text-gray-500">Los resultados calculados aparecerán aquí.</p>
+                        </div>
+                         <h3 class="text-xl font-semibold my-4 text-gray-700">3. Curva de Enfriamiento</h3>
+                        <div class="bg-white p-4 rounded-lg shadow-inner">
+                             <canvas id="chart-otro"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="mt-10 bg-white p-6 rounded-2xl shadow-lg">
@@ -316,6 +421,11 @@
         const labData = {};
         const charts = {};
 
+        function toggleEquations() {
+            const eqSection = document.getElementById('equations-section');
+            eqSection.classList.toggle('hidden');
+        }
+
         function changeTab(material) {
             document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
             document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
@@ -361,6 +471,20 @@
                 const t_inf = parseFloat(document.getElementById(`t-inf-${material}`).value);
                 const rawData = document.getElementById(`data-${material}`).value;
 
+                let materialName;
+                if (material === 'otro') {
+                    materialName = document.getElementById('name-otro').value;
+                    if (!materialName) {
+                         alert('Por favor, ingrese un nombre para el nuevo material.');
+                         return;
+                    }
+                } else if (material === 'acero') {
+                    materialName = 'Acero Galvanizado';
+                } else {
+                    materialName = material.charAt(0).toUpperCase() + material.slice(1);
+                }
+
+
                 if ([k, rho, cp, espesor_mm, ti, t_inf].some(isNaN) || !rawData) {
                     alert('Por favor, complete todos los campos y pegue los datos experimentales.');
                     return;
@@ -403,7 +527,7 @@
                     Fo,
                     k,
                     alpha,
-                    name: material.charAt(0).toUpperCase() + material.slice(1).replace('galvanizado', ' Galvanizado')
+                    name: materialName
                 };
 
                 const resultsDiv = document.getElementById(`results-${material}`);
@@ -411,6 +535,10 @@
                     <div class="flex justify-between text-sm">
                         <span class="font-medium text-gray-600">Coef. de convección (h):</span>
                         <span class="font-bold text-blue-600">${h.toFixed(2)} W/m²·K</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="font-medium text-gray-600">Difusividad Térmica (α):</span>
+                        <span class="font-bold text-blue-600">${alpha.toExponential(3)} m²/s</span>
                     </div>
                     <div class="flex justify-between text-sm">
                         <span class="font-medium text-gray-600">Número de Biot (Bi):</span>
@@ -449,6 +577,13 @@
                 charts[material].destroy();
             }
 
+            const colors = {
+                aluminio: { border: '#3B82F6', bg: '#BFDBFE' },
+                cobre: { border: '#F59E0B', bg: '#FDE68A' },
+                acero: { border: '#6B7280', bg: '#D1D5DB' },
+                otro: { border: '#10B981', bg: '#A7F3D0' }
+            };
+
             charts[material] = new Chart(ctx, {
                 type: 'line',
                 data: {
@@ -456,8 +591,8 @@
                     datasets: [{
                         label: `Temperatura (°C) - ${labData[material].name}`,
                         data: temps,
-                        borderColor: {'aluminio': '#3B82F6', 'cobre': '#F59E0B', 'acero': '#6B7280'}[material],
-                        backgroundColor: {'aluminio': '#BFDBFE', 'cobre': '#FDE68A', 'acero': '#D1D5DB'}[material] + '80',
+                        borderColor: colors[material].border,
+                        backgroundColor: colors[material].bg + '80',
                         borderWidth: 2,
                         pointRadius: 3,
                         tension: 0.1
@@ -477,7 +612,8 @@
             const colors = {
                 aluminio: { border: '#3B82F6', bg: '#BFDBFE' },
                 cobre: { border: '#F59E0B', bg: '#FDE68A' },
-                acero: { border: '#6B7280', bg: '#D1D5DB' }
+                acero: { border: '#6B7280', bg: '#D1D5DB' },
+                otro: { border: '#10B981', bg: '#A7F3D0' }
             };
 
             for (const material in labData) {
@@ -543,15 +679,20 @@
             });
             analysisHTML += '</ul>';
             
-            const fastestCooling = materialsArray.sort((a, b) => b.alpha - a.alpha)[0];
+            materialsArray.sort((a, b) => b.alpha - a.alpha);
+            const fastestCooling = materialsArray[0];
             const slowestCooling = materialsArray[materialsArray.length - 1];
 
             analysisHTML += `<p>La diferencia fundamental en la velocidad de enfriamiento, visible en la gráfica comparativa, radica en las propiedades intrínsecas de cada material. El <strong>número de Biot (Bi)</strong>, que relaciona la resistencia a la conducción interna con la resistencia a la convección externa, es muy bajo para todos los materiales, validando el uso del método de análisis de sistemas concentrados. Sin embargo, la <strong>difusividad térmica (α = k / ρcₚ)</strong> es el factor determinante.</p>`;
             analysisHTML += `<p>El <strong>${fastestCooling.name}</strong> presenta la mayor difusividad térmica (α ≈ ${fastestCooling.alpha.toExponential(2)} m²/s) debido a su alta conductividad térmica (k=${fastestCooling.k} W/m·K). Esto significa que el calor se conduce rápidamente desde el interior de la placa hacia la superficie para ser disipado por convección, resultando en el enfriamiento más rápido.</p>`;
-            analysisHTML += `<p>Por el contrario, el <strong>${slowestCooling.name}</strong> muestra la menor difusividad térmica (α ≈ ${slowestCooling.alpha.toExponential(2)} m²/s), lo que indica una mayor resistencia interna a la conducción del calor. Como resultado, su temperatura desciende más lentamente que los otros materiales bajo las mismas condiciones de convección.</p>`;
+            if (materialsArray.length > 1) {
+                analysisHTML += `<p>Por el contrario, el <strong>${slowestCooling.name}</strong> muestra la menor difusividad térmica (α ≈ ${slowestCooling.alpha.toExponential(2)} m²/s), lo que indica una mayor resistencia interna a la conducción del calor. Como resultado, su temperatura desciende más lentamente que los otros materiales bajo las mismas condiciones de convección.</p>`;
+            }
             
             conclusionHTML += `<li>Se analizó con éxito el fenómeno de conducción transitoria, determinando que para las condiciones dadas, el coeficiente de convección promedio fue de aproximadamente <strong>${(materialsArray.reduce((acc, cur) => acc + cur.h, 0) / materialsArray.length).toFixed(2)} W/m²·K</strong>.</li>`;
-            conclusionHTML += `<li>Se demostró el efecto del cambio de material: la placa de <strong>${fastestCooling.name}</strong> se enfrió más rápidamente, como se evidencia en la pendiente más pronunciada de su curva T vs t, debido a su mayor difusividad térmica en comparación con el <strong>${slowestCooling.name}</strong>.</li>`;
+            if (materialsArray.length > 1) {
+                conclusionHTML += `<li>Se demostró el efecto del cambio de material: la placa de <strong>${fastestCooling.name}</strong> se enfrió más rápidamente, como se evidencia en la pendiente más pronunciada de su curva T vs t, debido a su mayor difusividad térmica en comparación con el <strong>${slowestCooling.name}</strong>.</li>`;
+            }
             conclusionHTML += `<li>Se evaluaron los coeficientes de convección para cada caso, obteniendo valores consistentes que validan el procedimiento experimental. El cumplimiento del criterio <strong>Bi < 0.1</strong> para todos los materiales confirmó la aplicabilidad del método de resistencia concentrada.</li>`;
 
             conclusionHTML += '</ol>';
@@ -563,6 +704,4 @@
     </script>
 </body>
 </html>
-
-
 
